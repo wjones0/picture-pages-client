@@ -1,5 +1,7 @@
 <h3>Some Posts</h3>
-
+<nav>
+    <a [routerLink]="['PostNew']">New Post</a>
+</nav>
 <ul>
     <li *ngFor="#p of posts">
         <post-compact [post]="p"></post-compact>

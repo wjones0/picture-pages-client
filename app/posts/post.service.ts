@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, Headers, Response} from 'angular2/http';
 import 'rxjs/add/operator/map';
 
 import {Post} from './post';
@@ -13,6 +13,17 @@ export class PostService {
     getPosts() {
         return this._http.get(this.apiURLBase + '/postapi')
                 .map(res => res.json());
+    }
+    
+    newPost(theNewPost: Post) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+       
+        theNewPost.date = new Date();
+        //theNewPost.picurl = encodeURIComponent(theNewPost.picurl);
+        
+        return this._http.post(this.apiURLBase + '/postapi', JSON.stringify(theNewPost),{ headers:headers})
+            .map(res => res.json());
     }
     
     constructor(private _http: Http) { }

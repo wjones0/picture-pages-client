@@ -1,6 +1,7 @@
 {
-  "name": "angular2-quickstart",
-  "version": "1.0.0",
+  "name": "picture-pages",
+  "description": "picture pages client",
+  "version": "0.0.1",
   "scripts": {
     "tsc": "tsc --rootDir .",
     "tsc:w": "tsc -w --rootDir .",
