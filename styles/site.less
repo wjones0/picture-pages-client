@@ -1,0 +1,48 @@
+
+@margin: 10px;
+@padding: 10px;
+@pp_font_family: Roboto;
+
+
+body {
+    background-color: darkslategrey;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: @pp_font_family;
+    color: white;
+}
+
+form {
+    input {
+        color: black;
+    }
+}
+
+.ng-valid[required] {
+  border-left: 5px solid limegreen;
+}
+
+.ng-invalid {
+  border-left: 5px solid indianred;
+}
+
+.picture-card {
+    margin: 0 0 @margin*3 0;
+ 
+    .image-wrap {
+        img {
+            width: 100%;
+        }
+    }
+    .description {
+        font-size: 12px;
+        background: white;
+        color: grey;
+        letter-spacing: 1px;
+        padding: @padding*1.5;
+        height: 75px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

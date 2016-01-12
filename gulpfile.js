@@ -1,6 +1,6 @@
 var gulp = require('gulp');
-// var less = require('gulp-less');
-// var path = require('path');
+var less = require('gulp-less');
+var path = require('path');
 // var mocha = require('gulp-mocha');
 // var browserSync = require('browser-sync');
 // var nodemon = require('gulp-nodemon');
@@ -11,14 +11,14 @@ var outputDir = '../build/public';
 
 // compile less files from the ./styles folder
 // into css files to the ./public/stylesheets folder
-// gulp.task('less', function () {
-//     return gulp.src('./src/styles/**/*.less')
-//         .pipe(less({
-//             paths: [path.join(__dirname, 'less', 'includes')]
-//         }))
-//         .pipe(gulp.dest('./build/public/stylesheets'));
-// });
-// 
+gulp.task('less', function () {
+    return gulp.src('styles/*.less')
+        .pipe(less({
+            paths: [path.join(__dirname, 'less', 'includes')]
+        }))
+        .pipe(gulp.dest(outputDir+'/stylesheets'));
+});
+
 // // views - just copying for now.
 // gulp.task('views', function () {
 //    return gulp.src('./src/views/**/*')
@@ -50,11 +50,11 @@ gulp.task('lib', function () {
    } 
 });
 
-// gulp.task('copyJS', function () {
-//     return gulp.src('./src/public/**/*.js')
-//         .pipe(gulp.dest('./build/public'));
-// });
-// 
+gulp.task('csslib', function () {
+    return gulp.src("node_modules/bootstrap/dist/css/bootstrap.css")
+        .pipe(gulp.dest(outputDir+'/stylesheets'));
+});
+
 // // run mocha tests in the ./tests folder
 // gulp.task('test', function () {
 // 
@@ -122,5 +122,5 @@ gulp.task('lib', function () {
 //     //gulp.watch('tests/**/*.ts', ['buildTests']);
 // }); 
 
-gulp.task('build', ['htmlCopy','lib','appHtmlCopy']);
+gulp.task('build', ['htmlCopy','lib','appHtmlCopy','csslib','less']);
 gulp.task('default', ['build']);

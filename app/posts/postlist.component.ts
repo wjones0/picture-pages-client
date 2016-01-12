@@ -28,5 +28,7 @@ export class PostListComponent implements OnInit {
             error => console.log(error),
             () => console.log("posts retrieved"));
     }
+    
+    
 }
 

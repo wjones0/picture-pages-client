@@ -1,37 +1,55 @@
-<h4>new post here!!</h4>
+<h4>Create a new post</h4>
 
 <form (ngSubmit)="onSubmit()" #postForm="ngForm">
-    <div>
+    <div class="form-group">
         <label for="screenname">Screen Name</label>
-        <input type="text" required [(ngModel)]="model.screenname" ngControl="screenname">
+        <input class="form-control" type="text" required [(ngModel)]="model.screenname" ngControl="screenname" #screenname="ngForm">
+        <!--<div [hidden]="screenname.valid" class="alert alert-danger">
+            Screen Name is required
+        </div>-->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="picurl">Picture URL</label>
-        <input type="text" required [(ngModel)]="model.picurl" ngControl="picurl">
+        <input class="form-control" type="text" required [(ngModel)]="model.picurl" ngControl="picurl" #picurl="ngForm">
+        <!--<div [hidden]="picurl.valid" class="alert alert-danger">
+            Picture URL is required
+        </div>-->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="caption">Caption</label>
-        <input type="text" required [(ngModel)]="model.caption" ngControl="caption">
+        <input class="form-control" type="text" required [(ngModel)]="model.caption" ngControl="caption" #caption="ngForm">
+        <!--<div [hidden]="caption.valid" class="alert alert-danger">
+            Caption is required
+        </div>-->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="feature1">Feature 1</label>
-        <input type="text" required [(ngModel)]="model.feature1" ngControl="feature1">
+        <input class="form-control" type="text" required [(ngModel)]="model.feature1" ngControl="feature1" #feature1="ngForm">
+        <!--<div [hidden]="feature1.valid" class="alert alert-danger">
+            Feature is required
+        </div>-->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="feature2">Feature 2</label>
-        <input type="text" required [(ngModel)]="model.feature2" ngControl="feature2">
+        <input class="form-control" type="text" required [(ngModel)]="model.feature2" ngControl="feature2" #feature2="ngForm">
+        <!--<div [hidden]="feature2.valid" class="alert alert-danger">
+            Feature is required
+        </div>-->
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="feature3">Feature 3</label>
-        <input type="text" required [(ngModel)]="model.feature3" ngControl="feature3">
+        <input class="form-control" type="text" required [(ngModel)]="model.feature3" ngControl="feature3" #feature3="ngForm">
+        <!--<div [hidden]="feature3.valid" class="alert alert-danger">
+            Feature is required
+        </div>-->
     </div>
-    
-    <button type="submit" [disabled]="!postForm.form.valid">Submit</button>
-    <button [routerLink]="['PostList']">Cancel</button>
+
+    <button class="btn btn-default" type="submit" [disabled]="!postForm.form.valid">Submit</button>
+    <button class="btn btn-default" [routerLink]="['PostList']">Cancel</button>
 
 </form>

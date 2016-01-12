@@ -1,4 +1,9 @@
-<div>
-    <img [src]="post.picurl" height="200" width="300" />
-    <p>{{post.caption}} -- {{post.screenname}}</p>
+<div class="picture-card">
+    <div class="image-wrap">
+        <img [src]="post.picurl" height="200" width="300" />
+    </div>
+    <div class="description">
+        {{post.caption}}
+        <div class="date">{{thing(post.date)}}</div>
+    </div>
 </div>
