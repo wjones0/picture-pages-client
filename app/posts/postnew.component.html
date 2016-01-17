@@ -10,11 +10,12 @@
     </div>
 
     <div class="form-group">
-        <label for="picurl">Picture URL</label>
-        <input class="form-control" type="text" required [(ngModel)]="model.picurl" ngControl="picurl" #picurl="ngForm">
-        <!--<div [hidden]="picurl.valid" class="alert alert-danger">
-            Picture URL is required
-        </div>-->
+        <label for="pic">Picture</label>
+        <!--<input class="form-control" type="text" required [(ngModel)]="model.picurl" ngControl="picurl" #picurl="ngForm">-->
+        <input class="form-control" type="file" (change)="filePicked($event)" ngControl="pic" #pic="ngForm">
+        <div [hidden]="temporaryMissingFile" class="alert alert-danger">
+            Picture is required
+        </div>
     </div>
 
     <div class="form-group">

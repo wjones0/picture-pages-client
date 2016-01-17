@@ -8,10 +8,10 @@ import {POSTS} from './mock-posts';
 @Injectable()
 export class PostService {
 
-    private apiURLBase = 'http://localhost:3000';
+    private _apiURLBase = 'http://localhost:3000';
 
     getPosts() {
-        return this._http.get(this.apiURLBase + '/postapi')
+        return this._http.get(this._apiURLBase + '/postapi')
                 .map(res => res.json());
     }
     
@@ -22,7 +22,7 @@ export class PostService {
         theNewPost.date = new Date();
         //theNewPost.picurl = encodeURIComponent(theNewPost.picurl);
         
-        return this._http.post(this.apiURLBase + '/postapi', JSON.stringify(theNewPost),{ headers:headers})
+        return this._http.post(this._apiURLBase + '/postapi', JSON.stringify(theNewPost),{ headers:headers})
             .map(res => res.json());
     }
     
