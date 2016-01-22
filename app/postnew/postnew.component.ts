@@ -2,8 +2,8 @@ import {Component, OnInit} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {Post} from './post';
-import {PostService} from './post.service';
+import {Post} from '../posts/post';
+import {PostService} from '../postservice/post.service';
 import {PicUploadAWSS3Service} from '../picupload/picupload-awss3.service';
 
 
@@ -29,7 +29,7 @@ export class PostNewComponent implements OnInit {
     submitted = false;
 
     onSubmit() {
-        if(!this.pickedFile)
+        if(!this.pickedFile || this.pickedFile.type.indexOf('image/')==-1)
         {
             this.temporaryMissingFile = false;
             return;

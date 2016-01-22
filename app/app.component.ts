@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {PostListComponent} from './posts/postlist.component';
-import {PostNewComponent} from './posts/postnew.component';
+import {PostListComponent} from './postlist/postlist.component';
+import {PostNewComponent} from './postnew/postnew.component';
 
 @Component({
     selector: 'my-app',

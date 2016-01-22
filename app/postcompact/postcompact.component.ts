@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 
-import {Post} from './post';
+import {Post} from '../posts/post';
 
 @Component({
     selector: 'post-compact',

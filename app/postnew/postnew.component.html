@@ -12,7 +12,7 @@
     <div class="form-group">
         <label for="pic">Picture</label>
         <!--<input class="form-control" type="text" required [(ngModel)]="model.picurl" ngControl="picurl" #picurl="ngForm">-->
-        <input class="form-control" type="file" (change)="filePicked($event)" ngControl="pic" #pic="ngForm">
+        <input class="form-control" type="file" accept=".png,.jpg,.jpeg,.gif" (change)="filePicked($event)" ngControl="pic" #pic="ngForm">
         <div [hidden]="temporaryMissingFile" class="alert alert-danger">
             Picture is required
         </div>

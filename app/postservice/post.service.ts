@@ -2,7 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Headers, Response} from 'angular2/http';
 import 'rxjs/add/operator/map';
 
-import {Post} from './post';
+import {Post} from '../posts/post';
 import {POSTS} from './mock-posts';
 
 @Injectable()
