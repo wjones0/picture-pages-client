@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var tslint = require('gulp-tslint');
 var stylish = require('tslint-stylish')
 var browserSync = require('browser-sync').create();
+var replace = require('gulp-replace');
 
 var outputDir = '../build/public';
 
@@ -69,6 +70,20 @@ gulp.task('tsCompile', function () {
     
 });
 
+
+// compile the TypeScript without source maps for deployment
+gulp.task('tsCompile-deploy', function () {
+   var tsResult = gulp.src(['./app/**/*.ts'])
+        .pipe(replace('http://localhost:3000',''))
+        .pipe(gulpts(tsproject));
+   
+   return tsResult.js
+        .pipe(gulp.dest(outputDir+'/app'))
+        .pipe(browserSync.stream());
+    
+});
+
+
 // TSLint our TypeScript
 gulp.task('tslint', function() {
     return gulp.src(['./app/**/*.ts'])
@@ -114,4 +129,6 @@ gulp.task('watch', function () {
 }); 
 
 gulp.task('build', ['htmlCopy','lib','appHtmlCopy','csslib','less','tslint', 'tsCompile']);
+gulp.task('build-deploy',['htmlCopy','lib','appHtmlCopy','csslib','less','tslint', 'tsCompile-deploy']);
+gulp.task('bd',['build-deploy']);
 gulp.task('default', ['build']);
