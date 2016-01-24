@@ -12,19 +12,21 @@ export class PicUploadAWSS3Service {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this._http.post(this._apiURLBase + '/awsapi/getAWSS3URL', `{"type": "${theFile.type}", "name": "${theFile.name}"}`, { headers: headers })
+        return this._http.post(this._apiURLBase + '/awsapi/getAWSS3URL',
+                `{"type": "${theFile.type}","name": "${theFile.name}"}`,
+                { headers: headers })
             .map(res => res.json());
     }
 
     private performUpload(url, theFile: File) {
 
         var xhr = new XMLHttpRequest();
-        xhr.open("PUT", url);
+        xhr.open('PUT', url);
         xhr.setRequestHeader('x-amz-acl', 'public-read');
         xhr.setRequestHeader('Content-Type', theFile.type);
 
         xhr.onerror = function() {
-            alert("Could not upload file.");
+            alert('Could not upload file.');
         };
 
         xhr.send(theFile);
@@ -41,10 +43,10 @@ export class PicUploadAWSS3Service {
                     observer.complete();
                 },
                 error => console.log(error),
-                () => console.log("URL getting finished")
+                () => console.log('URL getting finished')
             );
 
-        })
+        });
 
     }
 

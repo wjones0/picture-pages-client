@@ -9,7 +9,7 @@ import {PicUploadAWSS3Service} from '../picupload/picupload-awss3.service';
 
 @Component({
     selector: 'post-new',
-    templateUrl: '/app/posts/postnew.component.html',
+    templateUrl: '/app/postnew/postnew.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [PostService, PicUploadAWSS3Service]
 })
@@ -29,12 +29,11 @@ export class PostNewComponent implements OnInit {
     submitted = false;
 
     onSubmit() {
-        if(!this.pickedFile || this.pickedFile.type.indexOf('image/')==-1)
-        {
+        if (!this.pickedFile || this.pickedFile.type.indexOf('image/') === -1) {
             this.temporaryMissingFile = false;
             return;
         }
-            
+
         console.log('submtting');
 
         this._awsService.uploadFile(this.pickedFile).subscribe(
@@ -43,11 +42,11 @@ export class PostNewComponent implements OnInit {
                 this._postService.newPost(this.model).subscribe(
                     res => this._router.navigate(['PostList']),
                     error => console.log(error),
-                    () => console.log("post creation finished")
+                    () => console.log('post creation finished')
                 );
             },
             error => console.log(error),
-            () => console.log("upload complete")
+            () => console.log('upload complete')
 
         );
 
@@ -58,10 +57,9 @@ export class PostNewComponent implements OnInit {
     filePicked($event): void {
         this.pickedFile = $event.target.files[0];
         console.log(this.pickedFile);
-        if(this.pickedFile) {
+        if (this.pickedFile) {
             this.temporaryMissingFile = true;
-        }
-        else {
+        } else {
             this.temporaryMissingFile = false;
         }
     }

@@ -14,18 +14,18 @@ export class PostService {
         return this._http.get(this._apiURLBase + '/postapi')
                 .map(res => res.json());
     }
-    
+
     newPost(theNewPost: Post) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       
+
         theNewPost.date = new Date();
         //theNewPost.picurl = encodeURIComponent(theNewPost.picurl);
-        
-        return this._http.post(this._apiURLBase + '/postapi', JSON.stringify(theNewPost),{ headers:headers})
+
+        return this._http.post(this._apiURLBase + '/postapi', JSON.stringify(theNewPost), { headers:headers})
             .map(res => res.json());
     }
-    
+
     constructor(private _http: Http) { }
 
 }
