@@ -5,7 +5,7 @@ var gulpts = require('gulp-typescript');
 var tsproject = gulpts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 var tslint = require('gulp-tslint');
-var stylish = require('tslint-stylish')
+var stylish = require('tslint-stylish');
 var browserSync = require('browser-sync').create();
 var replace = require('gulp-replace');
 
