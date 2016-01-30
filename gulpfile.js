@@ -36,6 +36,14 @@ gulp.task('appHtmlCopy', function () {
         .pipe(browserSync.stream());
 });
 
+//copy any image files
+gulp.task('imgCopy', function () {
+    return gulp.src(['./images/**/*.*'])
+        .pipe(gulp.dest(outputDir+'/images'))
+        .pipe(browserSync.stream());
+});
+
+
 //copy library files over
 gulp.task('lib', function () {
    var libfiles = ["node_modules/angular2/bundles/angular2-polyfills.js",
@@ -100,7 +108,7 @@ gulp.task('trigger-reload', function(){
 });
 
 // // run browser-sync on for client changes
-gulp.task('serve', ['tsCompile', 'tslint', 'csslib', 'less', 'htmlCopy', 'appHtmlCopy', 'lib', 'watch'], function () {
+gulp.task('serve', ['tsCompile', 'tslint', 'csslib', 'less', 'htmlCopy', 'appHtmlCopy', 'lib', 'imgCopy', 'watch'], function () {
 
     browserSync.init({
         port: 8080,
@@ -126,9 +134,10 @@ gulp.task('watch', function () {
     gulp.watch('./app/**/*.html', ['appHtmlCopy']);
     gulp.watch('./*.html', ['htmlCopy']);
     gulp.watch('./styles/*.less', ['less']);
+    gulp.watch('./images/*.*', ['imgCopy']);
 }); 
 
-gulp.task('build', ['htmlCopy','lib','appHtmlCopy','csslib','less','tslint', 'tsCompile']);
-gulp.task('build-deploy',['htmlCopy','lib','appHtmlCopy','csslib','less','tslint', 'tsCompile-deploy']);
+gulp.task('build', ['htmlCopy', 'imgCopy', 'lib','appHtmlCopy','csslib','less','tslint', 'tsCompile']);
+gulp.task('build-deploy',['htmlCopy', 'imgCopy', 'lib','appHtmlCopy','csslib','less','tslint', 'tsCompile-deploy']);
 gulp.task('bd',['build-deploy']);
 gulp.task('default', ['build']);

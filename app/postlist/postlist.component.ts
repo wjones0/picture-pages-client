@@ -29,6 +29,27 @@ export class PostListComponent implements OnInit {
             () => console.log('posts retrieved'));
     }
 
+    lastScrollTop = 0;
+    addingPosts = false;
+
+    onScroll($event): void {
+        let scrolltop = window.pageYOffset;
+
+        if (scrolltop > this.lastScrollTop) {
+            // we've hit bottom here - but only do it if we aren't already adding posts
+            if ((scrolltop + window.innerHeight >= document.body.clientHeight) && !this.addingPosts) {
+                this.addingPosts = true;
+                this._postService.getMorePosts(this.posts[this.posts.length - 1]._id).subscribe(
+                    postData => {
+                        this.posts.push(...postData);
+                        this.addingPosts = false;
+                    },
+                    error => console.log(error),
+                    () => console.log('more posts retrieved'));
+            }
+        }
+        this.lastScrollTop = scrolltop;
+    }
 
 }
 

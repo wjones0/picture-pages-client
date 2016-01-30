@@ -1,6 +1,6 @@
 
 export class Post {
-    id: string;
+    _id: string;
     screenname: string;
     picurl: string;
     date: Date;
