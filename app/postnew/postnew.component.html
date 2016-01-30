@@ -46,11 +46,11 @@
         <label for="feature3">Feature 3</label>
         <input class="form-control" type="text" required [(ngModel)]="model.feature3" ngControl="feature3" #feature3="ngForm">
         <!--<div [hidden]="feature3.valid" class="alert alert-danger">
-            Feature is required
+            Feature is required !postForm.form.valid && 
         </div>-->
     </div>
 
-    <button class="btn btn-default" type="submit" [disabled]="!postForm.form.valid">Submit</button>
+    <button class="btn btn-default" type="submit" [disabled]="!postForm.form.valid || submitting">Submit</button>
     <button class="btn btn-default" [routerLink]="['PostList']">Cancel</button>
 
 </form>

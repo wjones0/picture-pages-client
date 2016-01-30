@@ -26,7 +26,7 @@ export class PostNewComponent implements OnInit {
     pickedFile: File;
 
     temporaryMissingFile = false;
-    submitted = false;
+    submitting = false;
 
     onSubmit() {
         if (!this.pickedFile || this.pickedFile.type.indexOf('image/') === -1) {
@@ -36,6 +36,7 @@ export class PostNewComponent implements OnInit {
 
         console.log('submtting');
 
+        this.submitting = true;
         this._awsService.uploadFile(this.pickedFile).subscribe(
             newURL => {
                 this.model.picurl = newURL;
@@ -45,12 +46,13 @@ export class PostNewComponent implements OnInit {
                     () => console.log('post creation finished')
                 );
             },
-            error => console.log(error),
+            error => {
+                console.log(error);
+                this._router.navigate(['PostList']);
+            },
             () => console.log('upload complete')
 
         );
-
-        this.submitted = true;
 
     }
 
