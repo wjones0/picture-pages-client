@@ -6,8 +6,6 @@
                 <post-compact [post]="p" class="text-center"></post-compact>
             </div>
         </div>
-        <div class="text-center" *ngIf="addingPosts">
-            Loading more...&nbsp;<img src="/images/ajax-loader.gif" />
-        </div>
+        <loader *ngIf="addingPosts">Loading more...</loader>
     </div>
 </div>

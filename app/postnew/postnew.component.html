@@ -26,25 +26,53 @@
         </div>-->
     </div>
 
-    <div class="form-group">
-        <label for="feature1">Feature 1</label>
-        <input class="form-control" type="text" required [(ngModel)]="model.feature1" ngControl="feature1" #feature1="ngForm">
+    <loader *ngIf="loadingLovs">Loading category information...</loader>
+
+    <div class="form-group" *ngIf="regionLov">
+        <label for="region">{{regionLov.lovName}}</label>
+        <select class="form-control" required [(ngModel)]="model.region" ngControl="region" #region="ngForm">
+            <option *ngFor="#r of regionLov.values" [value]="r">{{r}}</option>
+        </select>
         <!--<div [hidden]="feature1.valid" class="alert alert-danger">
             Feature is required
         </div>-->
     </div>
 
-    <div class="form-group">
-        <label for="feature2">Feature 2</label>
-        <input class="form-control" type="text" required [(ngModel)]="model.feature2" ngControl="feature2" #feature2="ngForm">
+    <div class="form-group" *ngIf="stateLov">
+        <label for="state">{{stateLov.lovName}}</label>
+        <select class="form-control" required [(ngModel)]="model.state" ngControl="state" #state="ngForm">
+            <option *ngFor="#s of stateLov.values" [value]="s">{{s}}</option>
+        </select>
+        <!--<div [hidden]="feature1.valid" class="alert alert-danger">
+            Feature is required
+        </div>-->
+    </div>
+
+    <div class="form-group" *ngIf="featureLovs">
+        <label for="feature1">{{featureLovs[0].lovName}}</label>
+        <select class="form-control" required (change)="feature1Picked($event)" ngControl="feature1" #feature1="ngForm">
+            <option *ngFor="#f of featureLovs[0].values" [value]="f">{{f}}</option>
+        </select>
+        <!--<div [hidden]="feature1.valid" class="alert alert-danger">
+            Feature is required
+        </div>-->
+    </div>
+
+    <div class="form-group" *ngIf="featureLovs && featureLovs[1]">
+        <label for="feature2">{{featureLovs[1].lovName}}</label>
+        <select class="form-control" required [(ngModel)]="model.feature2" ngControl="feature2" #feature2="ngForm">
+            <option *ngFor="#f of featureLovs[1].values" [value]="f">{{f}}</option>
+        </select>
         <!--<div [hidden]="feature2.valid" class="alert alert-danger">
             Feature is required
         </div>-->
     </div>
 
-    <div class="form-group">
-        <label for="feature3">Feature 3</label>
-        <input class="form-control" type="text" required [(ngModel)]="model.feature3" ngControl="feature3" #feature3="ngForm">
+    <div class="form-group" *ngIf="featureLovs && featureLovs[2]">
+        <label for="feature3">{{featureLovs[2].lovName}}</label>
+        <select class="form-control" required [(ngModel)]="model.feature3" ngControl="feature3" #feature3="ngForm">
+            <option *ngFor="#f of featureLovs[2].values" [value]="f">{{f}}</option>
+        </select>
         <!--<div [hidden]="feature3.valid" class="alert alert-danger">
             Feature is required !postForm.form.valid && 
         </div>-->

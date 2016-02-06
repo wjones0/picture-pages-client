@@ -1,6 +1,8 @@
 import {Component, OnInit} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
+import {LoadingComponent} from '../loadingindicator/loading.component';
+
 import {Post} from '../posts/post';
 import {PostService} from '../postservice/post.service';
 import {PostCompactComponent} from '../postcompact/postcompact.component';
@@ -8,7 +10,7 @@ import {PostCompactComponent} from '../postcompact/postcompact.component';
 @Component({
     selector: 'post-list',
     templateUrl: '/app/postlist/postlist.component.html',
-    directives: [ROUTER_DIRECTIVES, PostCompactComponent],
+    directives: [ROUTER_DIRECTIVES, PostCompactComponent, LoadingComponent],
     providers: [PostService]
 })
 
