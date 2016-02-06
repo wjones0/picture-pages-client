@@ -28,7 +28,7 @@
 
     <div class="form-group">
         <label for="yearEvent">Year of event</label>
-        <input class="form-control" type="number" required [(ngModel)]="model.yearEvent" ngControl="yearEvent" #yearEvent="ngForm">
+        <input class="form-control" type="number" required [(ngModel)]="model.yearEvent" ngControl="yearEvent" #yearEvent="ngForm" min="1900" max="{{currYear}}">
         <!--<div [hidden]="caption.valid" class="alert alert-danger">
             Caption is required
         </div>-->

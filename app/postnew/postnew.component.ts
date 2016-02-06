@@ -36,6 +36,7 @@ export class PostNewComponent implements OnInit {
     regionLov: AppLov;
     stateLov: AppLov;
     featureLovs: AppLov[];
+    currYear = new Date().getFullYear();
 
     temporaryMissingFile = false;
     loadingLovs = false;
