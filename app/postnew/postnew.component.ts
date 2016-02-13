@@ -73,7 +73,7 @@ export class PostNewComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                this._router.navigate(['PostList', {category: this.selectedFeature}]]);
+                this._router.navigate(['PostList', {category: this.selectedFeature}]);
             },
             () => console.log('upload complete')
 

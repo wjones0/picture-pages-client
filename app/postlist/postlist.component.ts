@@ -26,7 +26,6 @@ export class PostListComponent implements OnInit {
 
     ngOnInit() {
         this.selectFeature(this._routeParams.get('category'));
-        
     }
 
     selectFeature(feature: string) {
