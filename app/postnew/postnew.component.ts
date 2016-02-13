@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {NgForm} from 'angular2/common';
-import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 
 import {LoadingComponent} from '../loadingindicator/loading.component';
 
@@ -25,9 +25,11 @@ export class PostNewComponent implements OnInit {
     constructor(private _postService: PostService,
         private _awsService: PicUploadAWSS3Service,
         private _lovService: AppLovService,
-        private _router: Router) { }
+        private _router: Router,
+        private _routeParams: RouteParams) { }
 
     loader: LoadingComponent;
+    selectedFeature: string;
 
     model = new Post();
     pickedFile: File;
@@ -43,6 +45,7 @@ export class PostNewComponent implements OnInit {
     submitting = false;
 
     ngOnInit() {
+        this.selectedFeature = this._routeParams.get('category');
         this.getLovs();
         this.loader = new LoadingComponent();
      }
@@ -63,14 +66,14 @@ export class PostNewComponent implements OnInit {
                 this.model.picurl = newURL;
                 // submit to api after new url receieved
                 this._postService.newPost(this.model).subscribe(
-                    res => this._router.navigate(['PostList']),
+                    res => this._router.navigate(['PostList', {category: this.selectedFeature}]),
                     error => console.log(error),
                     () => console.log('post creation finished')
                 );
             },
             error => {
                 console.log(error);
-                this._router.navigate(['PostList']);
+                this._router.navigate(['PostList', {category: this.selectedFeature}]]);
             },
             () => console.log('upload complete')
 

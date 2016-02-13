@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject, forwardRef} from 'angular2/core';
-import {PostListComponent} from '../postlist/postlist.component';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {AppLov} from '../applov/applov';
 import {AppLovService} from '../applovservice/applov.service';
@@ -11,11 +11,10 @@ import {AppLovService} from '../applovservice/applov.service';
 })
 export class FeatureSplitComponent implements OnInit {
 
-    private selectedFeature: string;
     private featureList: AppLov;
 
-    constructor(@Inject(forwardRef(() => PostListComponent)) private _parent:PostListComponent,
-                private _lovService: AppLovService) { }
+    constructor(private _lovService: AppLovService,
+                private _router: Router) { }
 
     ngOnInit() {
         this._lovService.getLovs().subscribe(
@@ -27,7 +26,6 @@ export class FeatureSplitComponent implements OnInit {
     }
 
     selectFeature(featureValue: string) {
-        this.selectedFeature = featureValue;
-        this._parent.selectFeature(this.selectedFeature);
+        this._router.navigate(['PostList', {category: featureValue}]);
     }
 }

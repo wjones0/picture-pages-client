@@ -87,6 +87,6 @@
     </div>
 
     <button class="btn btn-default" type="submit" [disabled]="!postForm.form.valid || submitting">Submit</button>
-    <button class="btn btn-default" [routerLink]="['PostList']">Cancel</button>
+    <button class="btn btn-default" [routerLink]="['PostList', {category: selectedFeature}]">Cancel</button>
 
 </form>

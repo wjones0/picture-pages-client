@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {PostListComponent} from './postlist/postlist.component';
 import {PostNewComponent} from './postnew/postnew.component';
+import {FeatureSplitComponent} from './featuresplit/featuresplit.component';
 
 @Component({
     selector: 'my-app',
@@ -12,12 +13,16 @@ import {PostNewComponent} from './postnew/postnew.component';
 @RouteConfig([
     {
         path: '/',
+        name: 'FeatureSplit',
+        component: FeatureSplitComponent
+    },
+    {
+        path: '/posts/:category',
         name: 'PostList',
-        component: PostListComponent,
-        useAsDefault: true
+        component: PostListComponent
     },
     { // PostList child route
-        path: '/post-new',
+        path: '/post-new/:category',
         name: 'PostNew',
         component: PostNewComponent
     }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 
 import {LoadingComponent} from '../loadingindicator/loading.component';
 
@@ -21,9 +21,13 @@ export class PostListComponent implements OnInit {
     public posts: Post[];
     selectedFeature: string;
 
-    constructor(private _postService: PostService) { }
+    constructor(private _postService: PostService,
+                private _routeParams: RouteParams) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.selectFeature(this._routeParams.get('category'));
+        
+    }
 
     selectFeature(feature: string) {
         this.selectedFeature = feature;
