@@ -93,7 +93,7 @@ export class PostNewComponent implements OnInit {
     feature1Picked($event): void {
         this.featureLovs.splice(1, this.featureLovs.length - 1);
         this.model.feature1 = $event.target.value;
-        this.featureLovs.push(...this.getIndividualFeaturesByDependency($event.target.value));
+        this.featureLovs.push(...this._lovService.getIndividualFeaturesByDependency($event.target.value, this.lovs));
     }
 
     // query the service for all our lovs
@@ -111,30 +111,10 @@ export class PostNewComponent implements OnInit {
 
     // extract specific features from the lovs
     private extractFeatures() {
-        this.regionLov = this.getIndividualFeatureByName('Region');
-        this.stateLov = this.getIndividualFeatureByName('State/Province');
+        this.regionLov = this._lovService.getIndividualFeatureByName('Region', this.lovs);
+        this.stateLov = this._lovService.getIndividualFeatureByName('State/Province', this.lovs);
         this.featureLovs = new Array<AppLov>();
-        this.featureLovs.push(this.getIndividualFeatureByName('Category'));
-    }
-
-    // extract a single feature by name
-    private getIndividualFeatureByName(name :string) {
-        for (let l of this.lovs) {
-            if (l.lovName === name) {
-                return l;
-            }
-        }
-    }
-
-    // get all the features for a dependency
-    private getIndividualFeaturesByDependency(dep :string) {
-        let ret = new Array<AppLov>();
-        for (let l of this.lovs) {
-            if (l.depValue === dep) {
-                ret.push(l);
-            }
-        }
-        return ret;
+        this.featureLovs.push(this._lovService.getIndividualFeatureByName('Category', this.lovs));
     }
 
 }

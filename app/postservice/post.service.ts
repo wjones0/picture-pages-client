@@ -11,17 +11,22 @@ export class PostService {
     private _apiURLBase = 'http://localhost:3000';
 
     // get initial set of posts
-    getPosts() {
-        return this._http.get(this._apiURLBase + '/postapi')
+    getPosts(feature1: string) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this._http.post(this._apiURLBase + '/postapi/init', JSON.stringify({ feature1: feature1 }), { headers:headers })
                 .map(res => res.json());
     }
 
     // get more posts from whatever the last id is
-    getMorePosts(currentLastID: string) {
+    getMorePosts(feature1: string, currentLastID: string) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this._http.post(this._apiURLBase + '/postapi/more', JSON.stringify({ lastID: currentLastID }), { headers:headers })
+        return this._http.post(this._apiURLBase + '/postapi/more',
+                               JSON.stringify( { feature1: feature1, lastID: currentLastID } ),
+                               { headers:headers })
             .map(res => res.json());
     }
 

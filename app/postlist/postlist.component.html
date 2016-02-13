@@ -1,4 +1,6 @@
-<div class="row" (window:scroll)="onScroll($event)">
+<featuresplit id="featureSplitMain" *ngIf="!selectedFeature"></featuresplit>
+
+<div class="row" (window:scroll)="onScroll($event)" *ngIf="selectedFeature">
     <div class="col-xs-12 pp-pics">
         <h3>Latest Posts        <button class="btn btn-default pull-right" [routerLink]="['PostNew']">New Post</button> </h3>
         <div class="row photos-wrap">

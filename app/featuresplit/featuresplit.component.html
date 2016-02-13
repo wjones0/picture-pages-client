@@ -1,0 +1,5 @@
+<div class="row" *ngIf="featureList">
+    <div class="col-md-6 col-sm-12" *ngFor="#c of featureList.values; #i=index">
+        <button class="btn btn-default" (click)="selectFeature(c)"><img class="col-md-12 col-sm-12" [src]="featureList.images[i]" ></button>
+    </div>
+</div>
