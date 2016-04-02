@@ -51,7 +51,10 @@ gulp.task('lib', function () {
                     "node_modules/rxjs/bundles/Rx.js",
                     "node_modules/angular2/bundles/angular2.dev.js",
                     "node_modules/angular2/bundles/router.dev.js",
-                    "node_modules/angular2/bundles/http.dev.js"];
+                    "node_modules/angular2/bundles/http.dev.js",
+                    "node_modules/es6-shim/es6-shim.min.js",
+                    "node_modules/systemjs/dist/system-polyfills.js",
+                    "node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"];
    
    for(val of libfiles)
    {
